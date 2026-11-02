@@ -290,6 +290,24 @@ fn a_grouped_product_on_the_cube_staged_reads_each_group_s_packed_nvfp4_slab() {
     );
 }
 
+#[test]
+fn a_grouped_product_on_the_plane_shuffle_reads_each_group_s_packed_mxfp4_slab() {
+    a_grouped_packed_stack_reads_each_group_s_slab(
+        PackedFormat::Mxfp4,
+        PlaneShuffleMatmulRoutine,
+        |_| MGroupedSettings::plane_shuffle_packed(),
+    );
+}
+
+#[test]
+fn a_grouped_product_on_the_cube_staged_reads_each_group_s_packed_mxfp4_slab() {
+    a_grouped_packed_stack_reads_each_group_s_slab(
+        PackedFormat::Mxfp4,
+        CubeStagedMatmulRoutine,
+        MGroupedSettings::cube_staged_packed,
+    );
+}
+
 /// Slabs along `K` that split a scale block, or a word of block scales, are refused rather than
 /// read across.
 #[test]
@@ -335,7 +353,12 @@ fn a_cube_staged_launch_over_a_packed_stack_holds_the_rows_its_groups_were_padde
     let hw = Hardware::from_client(&client);
     let lhs = HalfValues::new(rows * k, 3);
     let mut checked = 0;
-    for format in [PackedFormat::Q8, PackedFormat::Q4, PackedFormat::Nvfp4] {
+    for format in [
+        PackedFormat::Q8,
+        PackedFormat::Q4,
+        PackedFormat::Nvfp4,
+        PackedFormat::Mxfp4,
+    ] {
         let stack = PackedSlabs::new(
             &client,
             PackedSlabsSpec {
