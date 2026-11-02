@@ -443,7 +443,7 @@ fn a_cube_staged_launch_holds_the_rows_its_groups_were_padded_to() {
     let rows = *ends.last().unwrap() as usize;
     let client = client();
     let hw = Hardware::from_client(&client);
-    let mut checked = 0;
+    let mut walk = Walk::new();
     for settings in MGroupedSettings::cube_staged(&hw) {
         let tensors = MGroupedMatmulTensors::new(
             &client,
@@ -457,7 +457,8 @@ fn a_cube_staged_launch_holds_the_rows_its_groups_were_padded_to() {
             SlabAxis::Output,
         )
         .expect("a float stack derives a grouped launch");
-        let Ok(padded) = tensors.launch(&hw, &CubeStagedMatmulRoutine, &settings) else {
+        let Some(padded) = walk.ran(tensors.launch(&hw, &CubeStagedMatmulRoutine, &settings))
+        else {
             continue;
         };
         let chunk = padded.layout().align();
@@ -466,11 +467,7 @@ fn a_cube_staged_launch_holds_the_rows_its_groups_were_padded_to() {
         else {
             continue;
         };
-        checked += 1;
         assert_eq!(blueprint.partitioning.rows() as usize, chunk, "{settings}");
     }
-    assert!(
-        checked > 0,
-        "no cube staged setting prepared on this device"
-    );
+    walk.settle();
 }

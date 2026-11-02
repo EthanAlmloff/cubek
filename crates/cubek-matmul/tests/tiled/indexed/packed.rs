@@ -180,6 +180,30 @@ fn a_routed_product_on_the_plane_shuffle_reads_each_route_s_packed_nvfp4_slab() 
     a_routed_packed_stack_reads_each_route_s_slab(PackedFormat::Nvfp4);
 }
 
+/// Whether the test is skipped on `hw` for offering no matrix instruction, which the cube staged
+/// routine stages a packed input for: every packed setting declines there.
+fn skipped_without_a_matrix_instruction(hw: &Hardware) -> bool {
+    let without = hw.properties.features.matmul.cmma.iter().next().is_none();
+    if without {
+        TestOutcome::Validated(ValidationResult::Skipped(
+            "the cube staged routine stages a packed input for a matrix instruction".to_string(),
+        ))
+        .enforce();
+    }
+    without
+}
+
+fn a_grouped_cube_staged_packed_stack_reads_each_group_s_slab(format: PackedFormat) {
+    if skipped_without_a_matrix_instruction(&Hardware::from_client(&client())) {
+        return;
+    }
+    a_grouped_packed_stack_reads_each_group_s_slab(
+        format,
+        CubeStagedMatmulRoutine,
+        MGroupedSettings::cube_staged_packed,
+    );
+}
+
 #[test]
 fn a_grouped_product_on_the_plane_shuffle_reads_each_group_s_packed_q8_slab() {
     a_grouped_packed_stack_reads_each_group_s_slab(
@@ -209,29 +233,17 @@ fn a_grouped_product_on_the_plane_shuffle_reads_each_group_s_packed_nvfp4_slab()
 
 #[test]
 fn a_grouped_product_on_the_cube_staged_reads_each_group_s_packed_q8_slab() {
-    a_grouped_packed_stack_reads_each_group_s_slab(
-        PackedFormat::Q8,
-        CubeStagedMatmulRoutine,
-        MGroupedSettings::cube_staged_packed,
-    );
+    a_grouped_cube_staged_packed_stack_reads_each_group_s_slab(PackedFormat::Q8);
 }
 
 #[test]
 fn a_grouped_product_on_the_cube_staged_reads_each_group_s_packed_q4_slab() {
-    a_grouped_packed_stack_reads_each_group_s_slab(
-        PackedFormat::Q4,
-        CubeStagedMatmulRoutine,
-        MGroupedSettings::cube_staged_packed,
-    );
+    a_grouped_cube_staged_packed_stack_reads_each_group_s_slab(PackedFormat::Q4);
 }
 
 #[test]
 fn a_grouped_product_on_the_cube_staged_reads_each_group_s_packed_nvfp4_slab() {
-    a_grouped_packed_stack_reads_each_group_s_slab(
-        PackedFormat::Nvfp4,
-        CubeStagedMatmulRoutine,
-        MGroupedSettings::cube_staged_packed,
-    );
+    a_grouped_cube_staged_packed_stack_reads_each_group_s_slab(PackedFormat::Nvfp4);
 }
 
 #[test]
@@ -245,11 +257,7 @@ fn a_grouped_product_on_the_plane_shuffle_reads_each_group_s_packed_mxfp4_slab()
 
 #[test]
 fn a_grouped_product_on_the_cube_staged_reads_each_group_s_packed_mxfp4_slab() {
-    a_grouped_packed_stack_reads_each_group_s_slab(
-        PackedFormat::Mxfp4,
-        CubeStagedMatmulRoutine,
-        MGroupedSettings::cube_staged_packed,
-    );
+    a_grouped_cube_staged_packed_stack_reads_each_group_s_slab(PackedFormat::Mxfp4);
 }
 
 /// Slabs along `K` that split a scale block, or a word of block scales, are refused rather than
@@ -295,8 +303,11 @@ fn a_cube_staged_launch_over_a_packed_stack_holds_the_rows_its_groups_were_padde
         .collect();
     let client = client();
     let hw = Hardware::from_client(&client);
+    if skipped_without_a_matrix_instruction(&hw) {
+        return;
+    }
     let lhs = HalfValues::new(rows * k, 3);
-    let mut checked = 0;
+    let mut walk = Walk::new();
     for format in [
         PackedFormat::Q8,
         PackedFormat::Q4,
@@ -323,7 +334,8 @@ fn a_cube_staged_launch_over_a_packed_stack_holds_the_rows_its_groups_were_padde
                 SlabAxis::Output,
             )
             .expect("a packed stack of whole slabs derives a grouped launch");
-            let Ok(padded) = tensors.launch(&hw, &CubeStagedMatmulRoutine, &settings) else {
+            let launched = tensors.launch(&hw, &CubeStagedMatmulRoutine, &settings);
+            let Some(padded) = walk.ran(launched) else {
                 continue;
             };
             let chunk = padded.layout().align();
@@ -345,7 +357,6 @@ fn a_cube_staged_launch_over_a_packed_stack_holds_the_rows_its_groups_were_padde
             let (blueprint, _) = CubeStagedMatmulRoutine
                 .prepare(&hw, &problem, &settings.routine)
                 .expect("the launch prepared these chunk rows");
-            checked += 1;
             assert_eq!(
                 blueprint.partitioning.rows() as usize,
                 chunk,
@@ -353,8 +364,5 @@ fn a_cube_staged_launch_over_a_packed_stack_holds_the_rows_its_groups_were_padde
             );
         }
     }
-    assert!(
-        checked > 0,
-        "no cube staged setting prepared on this device"
-    );
+    walk.settle();
 }
