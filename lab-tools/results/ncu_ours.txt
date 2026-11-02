@@ -1,0 +1,16 @@
+== 2048 final2
+      1 cube_staged_attention_kernel_ea_f32_es_f16_e472c286|173984
+      1 cube_staged_attention_kernel_ea_f32_es_f16_e472c286|173312
+      1 cube_staged_attention_kernel_ea_f32_es_f16_e472c286|172992
+== 2048 dev2
+      2 cube_staged_attention_kernel_ea_f32_es_f16_6246dd08|215808
+      1 cube_staged_attention_kernel_ea_f32_es_f16_6246dd08|216000
+      1 cube_staged_attention_kernel_ea_f32_es_f16_6246dd08|215584
+== 4096 final2
+      2 cube_staged_attention_kernel_ea_f32_es_f16_e472c286|483808
+      1 cube_staged_attention_kernel_ea_f32_es_f16_e472c286|512832
+      1 cube_staged_attention_kernel_ea_f32_es_f16_e472c286|487648
+== 4096 dev2
+      1 cube_staged_attention_kernel_ea_f32_es_f16_6246dd08|662816
+      1 cube_staged_attention_kernel_ea_f32_es_f16_6246dd08|662720
+      1 cube_staged_attention_kernel_ea_f32_es_f16_6246dd08|662240
