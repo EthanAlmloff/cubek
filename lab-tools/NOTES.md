@@ -27,3 +27,4 @@ Port of the long-prompt attention lab work into PRs. Report: https://claude.ai/a
 - 20:2x: asked about cubek#1070/cubecl#2033: not mine (opened 20:20/16:57 by another session); told the orchestrator to go ahead. Clean A/B so far: old vs current stack identical (1768 vs 1767 µs by units) -> the 'regression' was contamination.
 - 20:4x: you came back; #1070 again: told the orchestrator it's not mine, they should take it.
 - 21:1x: xtask check format/typos/lint pass on cubecl feat/walk-over-run and on cubek wide, inner-fills, last-first, async-query (contains #1062-#1064). Clean A/B: current stack == old stack (1767/1520 µs vs 1768/1521).
+- 21:35: clean A/B done (f1x8 h4 pq2 double swz, LF, 6016x8192): old dev 2139/1873, current dev 2012/1751, stack 1767/1520 µs (by units / copy engine). Race3 (clean listed race, all sizes) started.
