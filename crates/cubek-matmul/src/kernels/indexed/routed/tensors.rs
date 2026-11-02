@@ -1,3 +1,13 @@
+use crate::kernels::indexed::routed::RoutedMatmulKey;
+use crate::kernels::indexed::stack::{SlabAxis, SlabView};
+use crate::kernels::select::problem::OperandKind;
+use crate::kernels::tensor::{PlainTensor, StoredTensor};
+use crate::kernels::tune::key::{MatmulTuneKey, OperandLayout};
+use crate::kernels::tune::{Product, matmul_ceiling};
+use crate::kernels::{
+    MATMUL_SLABS_TAKE_NO_STORED_TILES, MatmulIndex, MatmulIndexTable, MatmulInputs, MatmulRoutine,
+    MatmulTensors,
+};
 use cubecl::client::Client;
 use cubecl::ir::{ElemType, UIntKind};
 use cubecl::std::tensor::TensorHandle;
@@ -10,17 +20,6 @@ use cubek_std::Hardware;
 use cubek_std::autotune::Roofline;
 use cubek_std::layout::contiguous;
 use cubek_std::matmul_axes::{K, N};
-
-use crate::kernels::indexed::routed::RoutedMatmulKey;
-use crate::kernels::indexed::stack::{SlabAxis, SlabView};
-use crate::kernels::select::problem::OperandKind;
-use crate::kernels::tensor::{PlainTensor, StoredTensor};
-use crate::kernels::tune::key::{MatmulTuneKey, OperandLayout};
-use crate::kernels::tune::{Product, matmul_ceiling};
-use crate::kernels::{
-    MATMUL_SLABS_TAKE_NO_STORED_TILES, MatmulIndex, MatmulIndexTable, MatmulInputs, MatmulRoutine,
-    MatmulTensors,
-};
 
 /// The operands of one routed product: the rows, the stack of `experts` slabs laid `along`, and
 /// each row's routes, `out[r, s] = lhs[r] · rhs[routes[r, s]]`.
