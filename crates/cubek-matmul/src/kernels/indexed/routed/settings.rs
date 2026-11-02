@@ -16,9 +16,8 @@ use crate::kernels::{
 /// staged routine on a CPU runtime, which holds fewer units a cube than its planes, and the unit
 /// registers, which ask nothing of the device, against a float stack.
 ///
-/// A packed stack on a CPU runtime has no floor: the plane shuffle has no plane width there, the
-/// cube staged routine holds too few units a cube, and the unit registers refuse a packed stack.
-/// It is refused before racing.
+/// The unit registers refuse a packed stack, so a device neither other routine prepares on has no
+/// floor for one, and it is refused before racing.
 #[derive(Debug, Clone, Copy)]
 pub(crate) struct RoutedFloors {
     pub plane_shuffle: [Listing<PlaneShuffleMatmulRoutineSettings>; 2],

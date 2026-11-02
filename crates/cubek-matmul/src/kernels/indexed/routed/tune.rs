@@ -81,7 +81,8 @@ pub fn launch_tuned(
         let mut autotune =
             Autotune::measured_on(RoutedMatmulTensors::key, "spread-routes", spread_routes);
         let microkernel = autotune.group("microkernel", routines);
-        let autotune = autotune.bounded(|_, tensors| tensors.roofline());
+        let autotune = autotune
+            .bounded(|_, tensors| tensors.roofline(&Hardware::from_client(tensors.client())));
         let candidates = RoutedCandidates::new(&hw);
         let autotune = raced(
             autotune,

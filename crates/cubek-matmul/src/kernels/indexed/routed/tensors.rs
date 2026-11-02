@@ -254,14 +254,13 @@ impl RoutedMatmulTensors {
 
     /// The roofline a round stops at: the contraction's operations, and the bytes of the rows, the
     /// output and the slabs the routes can reach, one a route at most.
-    pub(crate) fn roofline(&self) -> Roofline {
+    pub(crate) fn roofline(&self, hw: &Hardware) -> Roofline {
         let [k, n] = self.slab_shape();
         let routed = self.rows() * self.slots;
         let reached = self.rhs.bytes() / self.experts * routed.min(self.experts);
-        let hw = Hardware::from_client(&self.client);
         Roofline {
             client: self.client.clone(),
-            ceiling: matmul_ceiling(&hw, self.elem()),
+            ceiling: matmul_ceiling(hw, self.elem()),
             work: Work {
                 compute_ops: 2 * routed * n * k,
                 bytes: self.lhs.bytes() + reached + routed * n * self.elem().size(),

@@ -5,7 +5,6 @@ use cubecl::ir::{ElemType, FloatKind, UIntKind};
 use cubecl::prelude::*;
 use cubecl::server::CopyDescriptor;
 use cubecl::std::tensor::TensorHandle;
-use cubecl::tile::launch::Refusal;
 use cubek_std::autotune::GroupPriority;
 use cubek_std::devices;
 use cubek_test_utils::client;
@@ -152,23 +151,15 @@ fn spread_routes_replace_garbage_from_a_discarded_launch() {
     assert_eq!(routes[..5], [0, 1, 2, 3, 0]);
 }
 
-/// On a CPU runtime a float stack is served by the unit registers floor, and a packed stack has
-/// no floor: the plane shuffle has no plane width there, the cube staged routine holds too few
-/// units a cube, and the unit registers are not listed for it. Only the kind and the hardware
-/// decide, so the packed case asks with a float stack standing for it, and is refused as the last
-/// floor it asks refuses, the packed cube staged one.
+/// On a CPU runtime a float stack is served by a floor, the unit registers asking nothing of the
+/// device. A packed stack is the tuned integration tests' to ask, with a real one.
 #[test]
-fn on_a_cpu_runtime_a_float_stack_has_a_floor_and_a_packed_one_none() {
+fn on_a_cpu_runtime_a_float_stack_has_a_floor() {
     let client = client();
     let tensors = routed(&client, 8, 2);
-    let hw = devices::cpu_12();
     let floors = RoutedFloors::LISTED;
-    assert!(floors.served(&hw, Product::Float, &tensors).is_ok());
-    let refused = floors.served(&hw, Product::Packed, &tensors);
-    assert!(
-        matches!(refused, Err(Refusal::CubePastDevice { .. })),
-        "{refused:?}"
-    );
+    let served = floors.served(&devices::cpu_12(), Product::Float, &tensors);
+    assert!(served.is_ok(), "{served:?}");
 }
 
 /// No row means no launch: the output is empty rather than refused.
