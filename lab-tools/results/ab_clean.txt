@@ -1,3 +1,4 @@
 final kv=copy: median 1768.0 us | maxdiff 3.05e-5 | runs: 1765.8 1768.0 1768.3 | tries 3
 final kv=async: median 1521.1 us | maxdiff 3.05e-5 | runs: 1521.8 1520.1 1521.1 | tries 3
 final2 kv=copy: median 1767.1 us | maxdiff 3.05e-5 | runs: 1767.1 1767.7 1764.8 | tries 3
+final2 kv=async: median 1520.3 us | maxdiff 3.05e-5 | runs: 1520.3 1520.5 1520.0 | tries 3

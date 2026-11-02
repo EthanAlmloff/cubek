@@ -1,0 +1,5 @@
+perf/attention-async-query format=0 typos=0 lint=0
+perf/attention-wide-stage-blocks format=0 typos=0 lint=0
+perf/attention-unchecked-inner-fills format=0 typos=0 lint=0
+perf/attention-last-first format=0 typos=0 lint=0
+EXIT
