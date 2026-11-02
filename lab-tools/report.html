@@ -44,7 +44,7 @@ a { color: var(--accent); }
 <main>
 <header>
   <h1>Prefill Attention Port</h1>
-  <p class="meta">Morning report. The long-prompt attention lab work, turned into production PRs. RTX PRO 6000 Blackwell (sm_120). Last updated 2026-11-02, late evening.</p>
+  <p class="meta">Morning report. The long-prompt attention lab work, turned into production PRs. RTX PRO 6000 Blackwell (sm_120). Last updated 2026-11-02, 23:50 UTC.</p>
   <p class="lede"><strong>In short:</strong> the lab’s speed-ups are now clean code in six cubek PRs and one cubecl PR. None of them uses env switches. On the headline problem (6016 queries over 8192 keys) the autotune’s best goes from <strong>1966 µs on dev to 1493 µs (−24%)</strong>, faster than FlashInfer (1561 µs). The gain is 17–24% at every size I tried. Everything is pushed and mergeable. Nothing is merged; that is your call.</p>
 </header>
 
@@ -81,14 +81,14 @@ a { color: var(--accent); }
   <div class="frame"><table>
 <tr><th>Queries × keys</th><th class="n">Dev</th><th class="n">This stack</th><th class="n">Gain</th><th class="n">FlashInfer</th><th class="n">Lab, here</th><th class="n">Lab, log</th></tr>
 <tr><td>6016 × 8192</td><td class="n">1966</td><td class="n best">1493</td><td class="n">−24%</td><td class="n">1561</td><td class="n">1466</td><td class="n">1460</td></tr>
-<tr><td>512 × 8192</td><td class="n">376</td><td class="n">312</td><td class="n">−17%</td><td class="n best">276</td><td class="n"><span class="chip wait">pending</span></td><td class="n">229</td></tr>
-<tr><td>2048 × 2048</td><td class="n">231</td><td class="n">191</td><td class="n">−17%</td><td class="n best">162</td><td class="n"><span class="chip wait">pending</span></td><td class="n">179</td></tr>
-<tr><td>4096 × 4096</td><td class="n">672</td><td class="n">524</td><td class="n">−22%</td><td class="n best">504</td><td class="n"><span class="chip wait">pending</span></td><td class="n">513</td></tr>
-<tr><td>8192 × 8192</td><td class="n">2128</td><td class="n best">1648</td><td class="n">−23%</td><td class="n">1676</td><td class="n"><span class="chip wait">pending</span></td><td class="n">1605</td></tr>
-<tr><td>16384 × 16384</td><td class="n">8061</td><td class="n">6301</td><td class="n">−22%</td><td class="n best">6232</td><td class="n"><span class="chip wait">pending</span></td><td class="n">6282</td></tr>
+<tr><td>512 × 8192</td><td class="n">376</td><td class="n">312</td><td class="n">−17%</td><td class="n best">276</td><td class="n">308</td><td class="n">229</td></tr>
+<tr><td>2048 × 2048</td><td class="n">231</td><td class="n">191</td><td class="n">−17%</td><td class="n best">162</td><td class="n">187</td><td class="n">179</td></tr>
+<tr><td>4096 × 4096</td><td class="n">672</td><td class="n">524</td><td class="n">−22%</td><td class="n best">504</td><td class="n">516</td><td class="n">513</td></tr>
+<tr><td>8192 × 8192</td><td class="n">2128</td><td class="n best">1648</td><td class="n">−23%</td><td class="n">1676</td><td class="n">1610</td><td class="n">1605</td></tr>
+<tr><td>16384 × 16384</td><td class="n">8061</td><td class="n">6301</td><td class="n">−22%</td><td class="n best">6232</td><td class="n">6284</td><td class="n">6282</td></tr>
 </table></div>
   <p class="meta">The stack’s winner is the eight-warp f1x8 shape (copy engine, swizzled, unbiased steps, async query, last first) at every size except 16384², where f2x4 wins. Dev’s winner is f1x4 h2 pq4 everywhere. FlashInfer 0.7.2 ran on the same box. The lab’s 1460 µs needs the keys and values on the copy engine (<code>CUBEK_LAB_KV_DELIVERY=async</code>), which its logged best env leaves out.</p>
-  <p><strong>Kernel time only (ncu), small sizes.</strong> Queued behind another session’s GPU job; filled in when it runs.</p>
+  <p><strong>Kernel time only (ncu), small sizes.</strong> Measured with ncu (caches flushed before each launch, clocks as set). 2048²: stack 173 µs, FlashInfer 177 µs, dev 216 µs. 4096²: stack 488 µs, FlashInfer 540 µs, dev 662 µs. So at small sizes the stack’s kernel is already faster than FlashInfer’s. The wall-time gap above is the time between our launches (about 18 µs a launch at 2048²), not the kernel.</p>
 </section>
 
 <section>
@@ -123,8 +123,8 @@ a { color: var(--accent); }
 <section>
   <h2>What’s left, or didn’t work</h2>
   <ul>
-  <li><strong>Small problems still trail FlashInfer:</strong> 2048² by 18%, 512 × 8192 by 13%, 4096² by 4%. 16384² is within 1%. At these sizes launch overhead weighs more; see the ncu line above.</li>
-  <li><strong>The lab is still ~2% faster than the stack</strong> at 6016 × 8192 (1466 vs 1493 µs). The lab’s cubecl carries the open ldmatrix-pairs PR cubecl#1992, which production doesn’t have. That is the likely gap.</li>
+  <li><strong>Small problems still trail FlashInfer in wall time:</strong> 2048² by 18%, 512 × 8192 by 13%, 4096² by 4%. 16384² is within 1%. But ncu shows our kernel is faster at 2048² and 4096². The loss is host-side: the gap between launches. That is launch overhead in the runtime, outside this work. It is the next thing worth looking at.</li>
+  <li><strong>The lab is still 1–2.5% faster than the stack</strong> at every size (1467 vs 1493 µs at 6016 × 8192; 1610 vs 1648 at 8192²). The lab’s cubecl carries the open ldmatrix-pairs PR cubecl#1992, which production doesn’t have. That is the likely gap.</li>
   <li><strong>A mistake:</strong> a scripted dev merge pushed conflict markers to #1061–#1064 for a few minutes. I fixed it with follow-up commits; force-push was blocked, as it should be. So those branches have a messy merge commit in their history. A squash merge hides it.</li>
   <li>The 8×8×8 softmax tests print <code>Skipped</code> on this GPU and count as passes. The 16×16×16 ones run.</li>
   </ul>
@@ -162,6 +162,8 @@ a { color: var(--accent); }
   <li>21:1x: xtask check format/typos/lint pass on cubecl feat/walk-over-run and on cubek wide, inner-fills, last-first, async-query (contains #1062-#1064). Clean A/B: current stack == old stack (1767/1520 µs vs 1768/1521).</li>
   <li>21:35: clean A/B done (f1x8 h4 pq2 double swz, LF, 6016x8192): old dev 2139/1873, current dev 2012/1751, stack 1767/1520 µs (by units / copy engine). Race3 (clean listed race, all sizes) started.</li>
   <li>22:3x: race3 (clean, listed settings, median of rounds) done. Best per problem, dev2 -&gt; stack (FlashInfer): 6016x8192 1966 -&gt; 1493 (1561); 2048² 231 -&gt; 191 (162); 4096² 672 -&gt; 524 (504); 8192² 2128 -&gt; 1648 (1676); 16384² 8061 -&gt; 6301 (6232); 512x8192 376 -&gt; 312 (276). The stack&#x27;s winner is f1x8 unbiased + Q async + last-first everywhere except 16384² (f2x4).</li>
+  <li>23:2x: ncu kernel time (stack / dev): 2048² ~173 / 216 µs, 4096² ~488 / 662 µs. Lab&#x27;s best config, clean, all sizes: 6016x8192 1467, 512x8192 308, 2048² 187, 4096² 516, 8192² 1610, 16384² 6284 µs; the stack is within 1–2.5% of it everywhere.</li>
+  <li>23:2x: fixed ncu_kernel.sh (it ran the `full` suite, whose names never match a listed setting, so it profiled nothing).</li>
   </ul>
 </section>
 </main>

@@ -1,0 +1,9 @@
+== fi 2048
+      1 void SinglePrefillWithKVCacheKernel<KernelTraits<1, 128, 2, 2, 8, 8, 4, 1, 0, __half, __half, __half, float, int, DefaultAttention<0, 0, 0, 0>, 1>, Params>(T2)|178560
+      1 void SinglePrefillWithKVCacheKernel<KernelTraits<1, 128, 2, 2, 8, 8, 4, 1, 0, __half, __half, __half, float, int, DefaultAttention<0, 0, 0, 0>, 1>, Params>(T2)|177920
+      1 void SinglePrefillWithKVCacheKernel<KernelTraits<1, 128, 2, 2, 8, 8, 4, 1, 0, __half, __half, __half, float, int, DefaultAttention<0, 0, 0, 0>, 1>, Params>(T2)|176320
+== fi 4096
+      1 void SinglePrefillWithKVCacheKernel<KernelTraits<1, 128, 2, 2, 8, 8, 4, 1, 0, __half, __half, __half, float, int, DefaultAttention<0, 0, 0, 0>, 1>, Params>(T2)|543904
+      1 void SinglePrefillWithKVCacheKernel<KernelTraits<1, 128, 2, 2, 8, 8, 4, 1, 0, __half, __half, __half, float, int, DefaultAttention<0, 0, 0, 0>, 1>, Params>(T2)|542336
+      1 void SinglePrefillWithKVCacheKernel<KernelTraits<1, 128, 2, 2, 8, 8, 4, 1, 0, __half, __half, __half, float, int, DefaultAttention<0, 0, 0, 0>, 1>, Params>(T2)|529024
+FI_DONE
