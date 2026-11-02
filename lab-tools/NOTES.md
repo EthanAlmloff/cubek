@@ -28,3 +28,4 @@ Port of the long-prompt attention lab work into PRs. Report: https://claude.ai/a
 - 20:4x: you came back; #1070 again: told the orchestrator it's not mine, they should take it.
 - 21:1x: xtask check format/typos/lint pass on cubecl feat/walk-over-run and on cubek wide, inner-fills, last-first, async-query (contains #1062-#1064). Clean A/B: current stack == old stack (1767/1520 µs vs 1768/1521).
 - 21:35: clean A/B done (f1x8 h4 pq2 double swz, LF, 6016x8192): old dev 2139/1873, current dev 2012/1751, stack 1767/1520 µs (by units / copy engine). Race3 (clean listed race, all sizes) started.
+- 22:3x: race3 (clean, listed settings, median of rounds) done. Best per problem, dev2 -> stack (FlashInfer): 6016x8192 1966 -> 1493 (1561); 2048² 231 -> 191 (162); 4096² 672 -> 524 (504); 8192² 2128 -> 1648 (1676); 16384² 8061 -> 6301 (6232); 512x8192 376 -> 312 (276). The stack's winner is f1x8 unbiased + Q async + last-first everywhere except 16384² (f2x4).
