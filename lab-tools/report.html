@@ -1,0 +1,118 @@
+<title>Prefill Attention Port</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column; wide tables scroll in their own frame; state is a chip per PR. */
+:root {
+  --bg: #f5f6f3; --panel: #ffffff; --fg: #1d221c; --muted: #5d665a; --rule: #d8ddd3;
+  --accent: #2f6b3a; --good: #23763a; --bad: #a23b2a; --wait: #7a5a12;
+  --display: "Source Serif 4", Georgia, serif;
+  --body: "Source Sans 3", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #141813; --panel: #1b2019; --fg: #e4e9e0; --muted: #9aa595; --rule: #2d352b;
+  --accent: #7fc48c; --good: #79cf8c; --bad: #ef8f7c; --wait: #e2bd62; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #141813; --panel: #1b2019; --fg: #e4e9e0; --muted: #9aa595; --rule: #2d352b;
+  --accent: #7fc48c; --good: #79cf8c; --bad: #ef8f7c; --wait: #e2bd62; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font: 16px/1.55 var(--body); }
+main { max-width: 900px; margin: 0 auto; padding-block: 32px 72px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 34px; }
+header { display: grid; gap: 8px; }
+h1 { font: 600 2.1rem/1.15 var(--display); margin: 0; text-wrap: balance; }
+h2 { font: 600 1.3rem/1.25 var(--display); margin: 0; text-wrap: balance; }
+section { display: grid; gap: 12px; min-width: 0; }
+p, ul { margin: 0; max-width: 70ch; }
+ul { padding-left: 1.2em; display: grid; gap: 6px; }
+.meta { color: var(--muted); font-size: .92rem; }
+code { font: .86em var(--mono); background: var(--panel); border: 1px solid var(--rule); border-radius: 4px; padding: 0 4px; overflow-wrap: anywhere; }
+.frame { overflow-x: auto; border: 1px solid var(--rule); border-radius: 6px; background: var(--panel); }
+table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 600; white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+td.n, th.n { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+td.best { color: var(--good); font-weight: 600; }
+.chip { display: inline-block; font-size: .7rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+  padding: 1px 8px; border-radius: 99px; border: 1px solid currentColor; white-space: nowrap; }
+.good { color: var(--good); } .bad { color: var(--bad); } .wait { color: var(--wait); }
+a { color: var(--accent); }
+.lede { font-size: 1.08rem; max-width: 68ch; }
+</style>
+<main>
+<header>
+  <h1>Prefill Attention Port</h1>
+  <p class="meta">The long-prompt attention lab work as production PRs. RTX PRO 6000 Blackwell (sm_120). Updated 2026-11-02.</p>
+  <p class="lede">On 6016 queries over 8192 keys, the stack takes the cube fragment routine from 2060 µs (the best setting dev lists) to <strong>1495 µs (−27%)</strong>. FlashInfer takes 1560 µs on the same box today. Six cubek PRs and two cubecl PRs, all into <code>dev/louisfd</code>; the seventh, a cubecl pin bump, was closed once dev pinned past #2019 by itself. cubecl#2019 merged at 13:58 today, so nothing waits on it, and no PR carries <code>Merge after: cubecl#2019</code>.</p>
+</header>
+
+<section>
+  <h2>Numbers</h2>
+  <p class="meta">32 query / 8 key heads, head dim 128, causal, <code>f16</code>, queries placed last. Each row is the fastest setting the build lists for its autotune (<code>CubeStagedAttentionRoutine::settings</code>). Lab rows are the lab branches run here with their best env. Median of 3 runs of 7 × 10 launches, each timed run under a GPU lock.</p>
+  <div class="frame"><table>
+<tr><th>Problem</th><th class="n">Dev start</th><th class="n">This stack</th><th class="n">Lab, here</th><th class="n">Lab, log</th><th class="n">FlashInfer, here</th><th class="n">FlashInfer, log</th></tr>
+<tr><td>6016 × 8192</td><td class="n">2060</td><td class="n best">1495</td><td class="n">1466*</td><td class="n">1460</td><td class="n">1560</td><td class="n">1552</td></tr>
+<tr><td>L = 2048</td><td class="n" colspan="3"><span class="chip wait">measuring</span></td><td class="n">179</td><td class="n">161</td><td class="n">152</td></tr>
+<tr><td>L = 4096</td><td class="n" colspan="3"><span class="chip wait">measuring</span></td><td class="n">513</td><td class="n">—</td><td class="n">478</td></tr>
+<tr><td>L = 8192</td><td class="n" colspan="3"><span class="chip wait">measuring</span></td><td class="n">1605</td><td class="n">—</td><td class="n">1667</td></tr>
+<tr><td>L = 16384</td><td class="n" colspan="3"><span class="chip wait">measuring</span></td><td class="n">6282</td><td class="n">—</td><td class="n">6204</td></tr>
+<tr><td>512 × 8192</td><td class="n" colspan="3"><span class="chip wait">measuring</span></td><td class="n">229</td><td class="n">—</td><td class="n">275</td></tr>
+</table></div>
+  <p class="meta">µs. * Single pass so far. The lab reaches 1466 µs only with the keys and values on the copy engine (<code>CUBEK_LAB_KV_DELIVERY=async</code>), which the log’s best config doesn’t list; with its listed env it takes 1852 µs here. The lab’s cubecl also carries the open ldmatrix-pairs PR cubecl#1992, which production doesn’t have and which may explain the remaining ~2%.</p>
+</section>
+
+<section>
+  <h2>Each change alone</h2>
+  <p class="meta">6016 queries over 8192 keys. Each PR's change on top of the cubecl bump only, three eight-plane shapes, median of 3 runs.</p>
+  <div class="frame"><table>
+<tr><th>Change</th><th class="n">f1x8 h4 pq2 double swz</th><th class="n">f1x4 h4 pq2 single_regs pad</th><th class="n">f2x4 h4 pq2 double swz</th></tr>
+<tr><td>Dev (83c7cbbb)</td><td class="n">2353</td><td class="n">2239</td><td class="n">2494</td></tr>
+<tr><td>cubecl bump, base-2 softmax (#1058)</td><td class="n">2232</td><td class="n">2143</td><td class="n">2392</td></tr>
+<tr><td>+ wide stage blocks (#1059)</td><td class="n">2174 <span class="good">−2.6%</span></td><td class="n">1884 <span class="good">−12%</span></td><td class="n">2047 <span class="good">−14%</span></td></tr>
+<tr><td>+ unchecked inner fills (#1060)</td><td class="n">2213 <span class="good">−0.9%</span></td><td class="n">2164 +1%</td><td class="n">2013 <span class="good">−16%</span></td></tr>
+<tr><td>+ last-first boxes (#1061)</td><td class="n">2010 <span class="good">−10%</span></td><td class="n">1967 <span class="good">−8%</span></td><td class="n">2202 <span class="good">−8%</span></td></tr>
+<tr><td>+ unbiased steps (#1063), alone</td><td class="n">2311 <span class="bad">+3.5%</span></td><td class="n">2138 0%</td><td class="n">2430 <span class="bad">+1.6%</span></td></tr>
+</table></div>
+<p class="meta">Async Q alone (#1064, K/V on the copy engine): −1.4% on f2x4, −1.9% on f1x4, +3.5% on f1x8. Unbiased steps and async Q pay only per shape, on top of the rest. The eight-plane PR’s and #1063/#1064’s bodies have the combined per-shape tables.</p>
+</section>
+
+<section>
+  <h2>Pull requests</h2>
+  <div class="frame"><table><tr><th>PR</th><th>What</th><th>Branch</th><th>Head</th><th>State</th></tr><tr><td><a href="https://github.com/tracel-ai/cubek/pull/1059">cubek#1059</a></td><td>Wide stage blocks: a block row spans 128 B<br><span class="meta">merges dev; dev’s cubecl pin</span></td><td><code>perf/attention-wide-stage-blocks</code></td><td class="n">6810f6be</td><td><span class="chip wait">open</span></td></tr><tr><td><a href="https://github.com/tracel-ai/cubek/pull/1060">cubek#1060</a></td><td>Every stage but the last filled unchecked<br><span class="meta">pins cubecl a56925c6 = dev’s 04f7f788 + cubecl#2029; Merge after: cubecl#2029</span></td><td><code>perf/attention-unchecked-inner-fills</code></td><td class="n">548eeb8d</td><td><span class="chip wait">open</span></td></tr><tr><td><a href="https://github.com/tracel-ai/cubek/pull/1061">cubek#1061</a></td><td>Listed settings take the boxes last first (dev’s whole-head lead too)<br><span class="meta">dev’s cubecl pin</span></td><td><code>perf/attention-last-first</code></td><td class="n">5e3d9216</td><td><span class="chip wait">open</span></td></tr><tr><td><a href="https://github.com/tracel-ai/cubek/pull/1062">cubek#1062</a></td><td>Five eight-plane shapes offered to the autotune<br><span class="meta">dev’s cubecl pin</span></td><td><code>perf/attention-eight-warp-shapes</code></td><td class="n">f29682fb</td><td><span class="chip wait">open</span></td></tr><tr><td><a href="https://github.com/tracel-ai/cubek/pull/1063">cubek#1063</a></td><td><code>unbiased_steps</code>: unmasked steps through <code>step_unbiased</code>, per shape<br><span class="meta">on #1062</span></td><td><code>perf/attention-unbiased-steps</code></td><td class="n">20378f4e</td><td><span class="chip wait">open</span></td></tr><tr><td><a href="https://github.com/tracel-ai/cubek/pull/1064">cubek#1064</a></td><td><code>query_as_keys</code>: the query staged as K/V are delivered, per shape<br><span class="meta">on #1063</span></td><td><code>perf/attention-async-query</code></td><td class="n">0afa6ce5</td><td><span class="chip wait">open</span></td></tr><tr><td><a href="https://github.com/tracel-ai/cubecl/pull/2029">cubecl#2029</a></td><td><code>Walk::over_run</code>: a walk over the run its operands are cut to<br><span class="meta">needed by cubek#1060; dev’s cubek pin merged in</span></td><td><code>feat/walk-over-run</code></td><td class="n">a56925c6</td><td><span class="chip wait">open</span></td></tr><tr><td><a href="https://github.com/tracel-ai/cubecl/pull/2028">cubecl#2028</a></td><td>WGSL: a non-finite float constant is its bits, cast<br><span class="meta">fixed #2016’s red linux-std-tests from #2019</span></td><td><code>fix/wgsl-infinite-literal</code></td><td class="n">5b324c6f</td><td><span class="chip good">merged</span></td></tr><tr><td><a href="https://github.com/tracel-ai/cubek/pull/1058">cubek#1058</a></td><td>cubecl pin past #2019<br><span class="meta">dev pinned past #2019 on its own</span></td><td><code>perf/attention-cubecl-bump</code></td><td class="n">224ecc54</td><td><span class="chip bad">closed</span></td></tr></table></div><p class="meta">The cubek branches started from dev/louisfd 83c7cbbb and have since merged dev up to cff0c67f (cubecl pin 04f7f788); the cubecl branches started from d8d66ab3. All are pushed. <code>lab/attention-prod-all</code> (cubek) merges the whole stack for measurement only; the lab branches <code>lab/night</code> and <code>lab/attention-long</code> are unchanged.</p>
+</section>
+
+<section>
+  <h2>Dropped, kept per shape, and why</h2>
+  <ul>
+<li><strong>Stage alignment floor</strong>: nothing to port. #2012 is merged and comes in with the pin. Alone it was within noise in the lab ablation here (1890 vs 1902 µs); the wide blocks it was waiting for are #1059.</li>
+<li><strong>Fused unbiased step</strong>: kept, per shape. On for three listed shapes (−1.2 to −2.3%; −0.7% more on top of async Q), off where it cost (+2–3% on f1x8 swizzled). Alone, before the inner fills stop spilling, it only cost.</li>
+<li><strong>Async Q</strong>: kept, per shape. On for the two copy-engine shapes (−1.1%, −1.2%), off where it cost (+1–4% on f1x4). It does nothing when the units copy the K/V.</li>
+<li><strong>Unchecked inner fills</strong>: kept. −16% on the register-bound f2x4, within noise elsewhere. It needs a small cubecl API (#2029); <code>Stages::fill_inside</code> from the lab wasn’t needed, because the ring already had the unchecked path.</li>
+<li><strong>Not ported, not in the spec</strong>: <code>SPLIT_KV</code>, <code>FILLERS</code>, <code>EARLY_K</code>, <code>LOCAL_SUMS</code>, <code>CUBES</code>, the output bounce (the lab marked it wrong), and the timing-only switches (<code>NO_SOFTMAX</code>, <code>NO_RESCALE</code>, <code>NO_PARTIAL</code>, <code>NO_MERGE</code>, <code>SKEW</code>, <code>PINGPONG</code>). The lab’s best config uses none of them.</li>
+</ul>
+</section>
+
+<section>
+  <h2>Correctness</h2>
+  <ul>
+<li>Every timed setting matches the dev reference to 3.05e-5 (one f16 ulp). The references come from unmodified dev (793240eb) and were checked against an f64 CPU computation on sampled rows: within 3e-4 at 2048 and 1.6e-5 at 6016×8192, i.e. f16 rounding.</li>
+<li><code>every_cube_staged_setting_matches_the_host_at_a_head_dim_of_128</code> (cubek-attention-backward, CUDA, the combined branch) passes, and none of the listed settings printed “declined on this device”. That test counts a decline as a pass, so I checked the log for it. The full cubek-attention-backward suite on the merged stack: 34/34 pass. Its 54 decline lines all come from backward-pass kernels this stack doesn’t touch (this device lacks the cmma instruction they need).</li>
+<li>cubek-attention lib 52/52 and cubek-microkernel lib 28/28 on each PR branch; clippy and rustdoc clean for the new code.</li>
+<li>cubecl#2029: the new test lets its last block run into NaN keys. A planted skip of the unchecked fill makes it fail, so it does exercise the path. The 8×8×8 softmax cases print <code>Skipped</code> on this GPU and count as passes; the 16×16×16 ones run.</li>
+</ul>
+</section>
+
+<section>
+  <h2>Found along the way</h2>
+  <ul>
+<li><strong>The log’s 1460 µs needs K/V on the copy engine.</strong> Its best env omits <code>CUBEK_LAB_KV_DELIVERY=async</code>, and without it the lab takes 1852 µs here. FlashInfer measures 1560 µs today against the log’s 1552, so the box itself is unchanged.</li>
+<li><strong>#2019 broke wgpu.</strong> WGSL has no infinity literal, and the backend printed <code>f32(+Inf)</code>. Fixed in cubecl#2028. The f16 case can’t run here, because this Vulkan adapter has no <code>shader-f16</code>.</li>
+<li><strong>The harness’s saved output is [queries, heads, dim]</strong>, not [heads, queries, dim]. That matters for any outside check.</li>
+<li><strong>Shared GPU.</strong> Another session benchmarks on this GPU, and the container’s <code>nvidia-smi</code> doesn’t show its processes. We agreed to time only under <code>flock /tmp/gpu-timing.lock</code>.</li>
+<li><strong>Clocks.</strong> <code>nvidia-smi -lgc 2100,2100</code> reports success, but I read 2317–2332 MHz afterwards, so I couldn’t confirm the lock holds. FlashInfer matching the log suggests the conditions are comparable.</li>
+<li><code>cargo build -p cubek-microkernel</code> alone skips the attention module (feature <code>attention</code>), so build through cubek-attention to check it.</li>
+</ul>
+</section>
+</main>

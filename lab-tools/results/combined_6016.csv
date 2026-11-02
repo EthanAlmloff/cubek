@@ -1,0 +1,27 @@
+copy,X,noQ,6016x8192,f1x8 h4 pq2 single_regs swizzled,1548.6,3.05e-5,n=3
+copy,X,noQ,6016x8192,f1x8 h4 pq2 double_regs swizzled,1558.7,3.05e-5,n=3
+copy,X,noQ,6016x8192,f1x8 h4 pq2 single_regs padded_blocks,1562.7,3.05e-5,n=3
+copy,X,noQ,6016x8192,f1x4 h4 pq2 double_regs padded_blocks,1583.5,3.05e-5,n=3
+copy,X,noQ,6016x8192,f2x4 h4 pq2 single_regs swizzled,1704.0,3.05e-5,n=3
+async,X,Y,6016x8192,f1x8 h4 pq2 double swizzled,1522.7,3.05e-5,n=3
+async,X,Y,6016x8192,f1x4 h4 pq2 double swizzled,1582.7,3.05e-5,n=3
+async,X,Y,6016x8192,f1x4 h4 pq2 double padded_blocks,1585.9,3.05e-5,n=3
+async,X,Y,6016x8192,f2x4 h4 pq2 double swizzled,1615.1,3.05e-5,n=3
+async,X,CUBEK_LAB_Q_ASYNC,6016x8192,f1x8 h4 pq2 double swizzled,1506.3,3.05e-5,n=3
+async,X,CUBEK_LAB_Q_ASYNC,6016x8192,f1x4 h4 pq2 double swizzled,1594.6,3.05e-5,n=3
+async,X,CUBEK_LAB_Q_ASYNC,6016x8192,f2x4 h4 pq2 double swizzled,1595.6,3.05e-5,n=3
+async,X,CUBEK_LAB_Q_ASYNC,6016x8192,f1x4 h4 pq2 double padded_blocks,1649.9,3.05e-5,n=3
+copy,CUBEK_LAB_UNBIASED,noQ,6016x8192,f1x8 h4 pq2 single_regs padded_blocks,1527.0,3.05e-5,n=3
+copy,CUBEK_LAB_UNBIASED,noQ,6016x8192,f1x8 h4 pq2 single_regs swizzled,1548.4,3.05e-5,n=3
+copy,CUBEK_LAB_UNBIASED,noQ,6016x8192,f1x8 h4 pq2 double_regs swizzled,1552.4,3.05e-5,n=3
+copy,CUBEK_LAB_UNBIASED,noQ,6016x8192,f1x4 h4 pq2 double_regs padded_blocks,1564.3,3.05e-5,n=3
+copy,CUBEK_LAB_UNBIASED,noQ,6016x8192,f2x4 h4 pq2 single_regs swizzled,1632.1,3.05e-5,n=3
+async,CUBEK_LAB_UNBIASED,Y,6016x8192,f1x8 h4 pq2 double swizzled,1525.6,3.05e-5,n=3
+async,CUBEK_LAB_UNBIASED,Y,6016x8192,f1x4 h4 pq2 double swizzled,1581.0,3.05e-5,n=3
+async,CUBEK_LAB_UNBIASED,Y,6016x8192,f1x4 h4 pq2 double padded_blocks,1597.5,3.05e-5,n=3
+async,CUBEK_LAB_UNBIASED,Y,6016x8192,f2x4 h4 pq2 double swizzled,1598.9,3.05e-5,n=3
+async,CUBEK_LAB_UNBIASED,CUBEK_LAB_Q_ASYNC,6016x8192,f1x8 h4 pq2 double swizzled,1494.6,3.05e-5,n=3
+async,CUBEK_LAB_UNBIASED,CUBEK_LAB_Q_ASYNC,6016x8192,f1x4 h4 pq2 double swizzled,1600.0,3.05e-5,n=3
+async,CUBEK_LAB_UNBIASED,CUBEK_LAB_Q_ASYNC,6016x8192,f1x4 h4 pq2 double padded_blocks,1611.8,3.05e-5,n=3
+async,CUBEK_LAB_UNBIASED,CUBEK_LAB_Q_ASYNC,6016x8192,f2x4 h4 pq2 double swizzled,1619.0,3.05e-5,n=3
+DONE

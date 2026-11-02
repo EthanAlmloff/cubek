@@ -1,0 +1,19 @@
+dev 6016 x 8192 | f1x8 h4 pq2 double swizzled | X=1 | median 2352.7 us | maxdiff 0.00e0 | runs: 2350.4 2457.4 2352.7 
+bump 6016 x 8192 | f1x8 h4 pq2 double swizzled | X=1 | median 2232.3 us | maxdiff 3.05e-5 | runs: 2232.3 2224.9 2302.2 
+wide 6016 x 8192 | f1x8 h4 pq2 double swizzled | X=1 | median 2173.6 us | maxdiff 3.05e-5 | runs: 2160.3 2203.2 2173.6 
+inside 6016 x 8192 | f1x8 h4 pq2 double swizzled | X=1 | median 2212.6 us | maxdiff 3.05e-5 | runs: 2117.2 2221.2 2212.6 
+unbiased 6016 x 8192 | f1x8 h4 pq2 double swizzled | CUBEK_LAB_UNBIASED=1 | median 2310.5 us | maxdiff 3.05e-5 | runs: 2311.7 2276.6 2310.5 
+bump 6016 x 8192 | f1x8 h4 pq2 double swizzled | CUBEK_LAB_LAST_FIRST=1 | median 2010.4 us | maxdiff 3.05e-5 | runs: 2000.4 2010.4 2050.7 
+dev 6016 x 8192 | f1x4 h4 pq2 single_regs padded_blocks | X=1 | median 2239.1 us | maxdiff 3.05e-5 | runs: 2255.9 2239.1 2238.6 
+bump 6016 x 8192 | f1x4 h4 pq2 single_regs padded_blocks | X=1 | median 2143.4 us | maxdiff 3.05e-5 | runs: 2143.4 2140.7 2149.6 
+wide 6016 x 8192 | f1x4 h4 pq2 single_regs padded_blocks | X=1 | median 1884.4 us | maxdiff 3.05e-5 | runs: 1882.5 1886.7 1884.4 
+inside 6016 x 8192 | f1x4 h4 pq2 single_regs padded_blocks | X=1 | median 2164.4 us | maxdiff 3.05e-5 | runs: 2164.4 2128.0 2192.1 
+unbiased 6016 x 8192 | f1x4 h4 pq2 single_regs padded_blocks | CUBEK_LAB_UNBIASED=1 | median 2137.7 us | maxdiff 3.05e-5 | runs: 2137.7 2136.3 2138.6 
+bump 6016 x 8192 | f1x4 h4 pq2 single_regs padded_blocks | CUBEK_LAB_LAST_FIRST=1 | median 1967.2 us | maxdiff 3.05e-5 | runs: 1967.2 1970.3 1967.0 
+dev 6016 x 8192 | f2x4 h4 pq2 double swizzled | X=1 | median 2493.6 us | maxdiff 3.05e-5 | runs: 2493.6 2489.7 2496.3 
+bump 6016 x 8192 | f2x4 h4 pq2 double swizzled | X=1 | median 2392.4 us | maxdiff 3.05e-5 | runs: 2385.4 2405.7 2392.4 
+wide 6016 x 8192 | f2x4 h4 pq2 double swizzled | X=1 | median 2046.8 us | maxdiff 3.05e-5 | runs: 2056.3 2044.4 2046.8 
+inside 6016 x 8192 | f2x4 h4 pq2 double swizzled | X=1 | median 2013.0 us | maxdiff 3.05e-5 | runs: 2001.7 2052.6 2013.0 
+unbiased 6016 x 8192 | f2x4 h4 pq2 double swizzled | CUBEK_LAB_UNBIASED=1 | median 2430.2 us | maxdiff 3.05e-5 | runs: 2430.2 2436.7 2363.7 
+bump 6016 x 8192 | f2x4 h4 pq2 double swizzled | CUBEK_LAB_LAST_FIRST=1 | median 2201.7 us | maxdiff 3.05e-5 | runs: 2257.8 2188.7 2201.7 
+DONE

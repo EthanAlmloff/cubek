@@ -1,0 +1,171 @@
+dev,6016x8192,listed0,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1,11566.2,44.2,"(376, 1, 8)",128,20480,3.05e-5
+dev,6016x8192,listed1,cube-fragment-attention fragments=2x2 heads=4 planes_along_queries=1 planes_along_keys=1,6603.8,77.4,"(188, 1, 8)",128,40960,3.05e-5
+dev,6016x8192,listed2,cube-fragment-attention fragments=2x4 heads=4 planes_along_queries=1 planes_along_keys=1,5037.3,101.4,"(188, 1, 8)",128,49152,3.05e-5
+dev,6016x8192,listed3,cube-fragment-attention fragments=1x8 heads=1 planes_along_queries=1 planes_along_keys=1,18160.7,28.1,"(376, 4, 8)",32,36864,0.00e0
+dev,6016x8192,listed4,cube-fragment-attention fragments=1x16 heads=1 planes_along_queries=1 planes_along_keys=1,34578.2,14.8,"(376, 4, 8)",32,69632,3.05e-5
+dev,6016x8192,listed5,cube-fragment-attention fragments=1x1 heads=1 planes_along_queries=1 planes_along_keys=1,12103.4,42.2,"(376, 4, 8)",32,8192,3.05e-5
+dev,6016x8192,listed6,cube-fragment-attention fragments=1x1 heads=2 planes_along_queries=1 planes_along_keys=1,11483.2,44.5,"(376, 2, 8)",64,12288,3.05e-5
+dev,6016x8192,listed7,cube-fragment-attention fragments=1x1 heads=8 planes_along_queries=1 planes_along_keys=1,11537.0,44.3,"(376, 1, 8)",128,20480,3.05e-5
+dev,6016x8192,listed8,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=2 planes_along_keys=1,12191.1,41.9,"(188, 1, 8)",256,36864,3.05e-5
+dev,6016x8192,listed9,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=4 planes_along_keys=1,13299.0,38.4,"(94, 1, 8)",512,69632,3.05e-5
+dev,6016x8192,listed10,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 stages_in_flight=2,10907.4,46.9,"(376, 1, 8)",128,24576,3.05e-5
+dev,6016x8192,listed11,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 prefetch=registers,10849.8,47.1,"(376, 1, 8)",128,20480,3.05e-5
+dev,6016x8192,listed12,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 stages_in_flight=2 prefetch=registers,10968.4,46.6,"(376, 1, 8)",128,24576,3.05e-5
+dev,6016x8192,listed13,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 layout=padded_rows,3108.5,164.4,"(376, 1, 8)",128,21760,3.05e-5
+dev,6016x8192,listed14,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 layout=blocks,4930.0,103.7,"(376, 1, 8)",128,20480,3.05e-5
+dev,6016x8192,listed15,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 layout=padded_blocks,4236.5,120.6,"(376, 1, 8)",128,29696,3.05e-5
+dev,6016x8192,listed16,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 layout=swizzled_blocks,4114.7,124.2,"(376, 1, 8)",128,20480,3.05e-5
+dev,6016x8192,listed17,cube-fragment-attention fragments=1x1 scratch=whole heads=4 planes_along_queries=1 planes_along_keys=1,11393.8,44.9,"(376, 1, 8)",128,20480,3.05e-5
+dev,6016x8192,listed18,cube-fragment-attention fragments=1x1 transport=cmma shape=rectangular heads=4 planes_along_queries=1 planes_along_keys=1,17381.1,29.4,"(752, 1, 8)",128,34816,3.05e-5
+dev,6016x8192,listed19,cube-fragment-attention fragments=1x1 transport=cmma heads=1 planes_along_queries=1 planes_along_keys=2,18794.3,27.2,"(376, 4, 8)",64,33920,3.05e-5
+dev,6016x8192,listed20,cube-fragment-attention fragments=1x1 transport=cmma heads=1 planes_along_queries=1 planes_along_keys=4,18307.6,27.9,"(376, 4, 8)",128,55552,3.05e-5
+dev,6016x8192,listed21,cube-fragment-attention fragments=1x1 transport=cmma heads=1 planes_along_queries=1 planes_along_keys=8,21224.2,24.1,"(376, 4, 8)",256,98816,3.05e-5
+dev,6016x8192,listed22,cube-fragment-attention fragments=2x4 heads=4 planes_along_queries=1 planes_along_keys=1 layout=swizzled_blocks,2552.2,200.2,"(188, 1, 8)",128,49152,3.05e-5
+dev,6016x8192,listed23,cube-fragment-attention fragments=2x8 heads=4 planes_along_queries=1 planes_along_keys=1 layout=swizzled_blocks,3070.9,166.4,"(188, 1, 8)",128,65536,0.00e0
+dev,6016x8192,listed24,cube-fragment-attention fragments=1x8 heads=4 planes_along_queries=1 planes_along_keys=1 layout=swizzled_blocks,2728.8,187.3,"(376, 1, 8)",128,49152,0.00e0
+dev,6016x8192,listed25,cube-fragment-attention fragments=1x8 heads=4 planes_along_queries=2 planes_along_keys=1 layout=swizzled_blocks,2389.3,213.9,"(188, 1, 8)",256,65536,0.00e0
+dev,6016x8192,listed26,cube-fragment-attention fragments=1x2 heads=2 planes_along_queries=2 planes_along_keys=1 layout=swizzled_blocks,2914.0,175.4,"(188, 2, 8)",128,24576,3.05e-5
+dev,6016x8192,listed27,cube-fragment-attention fragments=1x4 heads=2 planes_along_queries=4 planes_along_keys=1 stages_in_flight=2 layout=swizzled_blocks delivery=async,2059.5,248.1,"(94, 2, 8)",256,65536,3.05e-5
+dev,6016x8192,listed28,cube-fragment-attention fragments=1x4 heads=4 planes_along_queries=2 planes_along_keys=1 stages_in_flight=2 layout=padded_blocks delivery=async,2080.5,245.6,"(188, 1, 8)",256,90112,3.05e-5
+dev,6016x8192,listed29,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 queries=last_first,10608.4,48.2,"(376, 1, 8)",128,20480,3.05e-5
+final,6016x8192,listed0,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1,11200.2,45.6,"(376, 1, 8)",128,20480,3.05e-5
+final,6016x8192,listed1,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 queries=last_first,10414.6,49.1,"(376, 1, 8)",128,20480,3.05e-5
+final,6016x8192,listed2,cube-fragment-attention fragments=2x2 heads=4 planes_along_queries=1 planes_along_keys=1 queries=last_first,5985.0,85.4,"(188, 1, 8)",128,40960,3.05e-5
+final,6016x8192,listed3,cube-fragment-attention fragments=2x4 heads=4 planes_along_queries=1 planes_along_keys=1 queries=last_first,4358.8,117.2,"(188, 1, 8)",128,49152,3.05e-5
+final,6016x8192,listed4,cube-fragment-attention fragments=1x8 heads=1 planes_along_queries=1 planes_along_keys=1 queries=last_first,14804.8,34.5,"(376, 4, 8)",32,36864,3.05e-5
+final,6016x8192,listed5,cube-fragment-attention fragments=1x16 heads=1 planes_along_queries=1 planes_along_keys=1 queries=last_first,28579.6,17.9,"(376, 4, 8)",32,69632,3.05e-5
+final,6016x8192,listed6,cube-fragment-attention fragments=1x1 heads=1 planes_along_queries=1 planes_along_keys=1 queries=last_first,12142.7,42.1,"(376, 4, 8)",32,8192,3.05e-5
+final,6016x8192,listed7,cube-fragment-attention fragments=1x1 heads=2 planes_along_queries=1 planes_along_keys=1 queries=last_first,11336.9,45.1,"(376, 2, 8)",64,12288,3.05e-5
+final,6016x8192,listed8,cube-fragment-attention fragments=1x1 heads=8 planes_along_queries=1 planes_along_keys=1 queries=last_first,10405.3,49.1,"(376, 1, 8)",128,20480,3.05e-5
+final,6016x8192,listed9,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=2 planes_along_keys=1 queries=last_first,10939.6,46.7,"(188, 1, 8)",256,36864,3.05e-5
+final,6016x8192,listed10,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=4 planes_along_keys=1 queries=last_first,11627.1,44.0,"(94, 1, 8)",512,69632,3.05e-5
+final,6016x8192,listed11,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 stages_in_flight=2 queries=last_first,10409.8,49.1,"(376, 1, 8)",128,24576,3.05e-5
+final,6016x8192,listed12,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 prefetch=registers queries=last_first,10165.8,50.3,"(376, 1, 8)",128,20480,3.05e-5
+final,6016x8192,listed13,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 stages_in_flight=2 prefetch=registers queries=last_first,10059.2,50.8,"(376, 1, 8)",128,24576,3.05e-5
+final,6016x8192,listed14,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 layout=padded_rows queries=last_first,2881.0,177.4,"(376, 1, 8)",128,21760,3.05e-5
+final,6016x8192,listed15,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 layout=blocks queries=last_first,6495.6,78.7,"(376, 1, 8)",128,20480,3.05e-5
+final,6016x8192,listed16,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 layout=padded_blocks queries=last_first,2868.3,178.2,"(376, 1, 8)",128,29184,3.05e-5
+final,6016x8192,listed17,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 layout=swizzled_blocks queries=last_first,2933.1,174.2,"(376, 1, 8)",128,20480,3.05e-5
+final,6016x8192,listed18,cube-fragment-attention fragments=1x1 scratch=whole heads=4 planes_along_queries=1 planes_along_keys=1 queries=last_first,10205.9,50.1,"(376, 1, 8)",128,20480,3.05e-5
+final,6016x8192,listed19,cube-fragment-attention fragments=1x1 transport=cmma shape=rectangular heads=4 planes_along_queries=1 planes_along_keys=1 queries=last_first,16762.0,30.5,"(752, 1, 8)",128,34816,3.05e-5
+final,6016x8192,listed20,cube-fragment-attention fragments=1x1 transport=cmma heads=1 planes_along_queries=1 planes_along_keys=2 queries=last_first,17547.8,29.1,"(376, 4, 8)",64,33920,3.05e-5
+final,6016x8192,listed21,cube-fragment-attention fragments=1x1 transport=cmma heads=1 planes_along_queries=1 planes_along_keys=4 queries=last_first,17533.9,29.1,"(376, 4, 8)",128,55552,3.05e-5
+final,6016x8192,listed22,cube-fragment-attention fragments=1x1 transport=cmma heads=1 planes_along_queries=1 planes_along_keys=8 queries=last_first,19671.5,26.0,"(376, 4, 8)",256,98816,3.05e-5
+final,6016x8192,listed23,cube-fragment-attention fragments=2x4 heads=4 planes_along_queries=1 planes_along_keys=1 layout=swizzled_blocks queries=last_first,1780.0,287.1,"(188, 1, 8)",128,49152,3.05e-5
+final,6016x8192,listed24,cube-fragment-attention fragments=2x8 heads=4 planes_along_queries=1 planes_along_keys=1 layout=swizzled_blocks queries=last_first,2082.7,245.4,"(188, 1, 8)",128,65536,3.05e-5
+final,6016x8192,listed25,cube-fragment-attention fragments=1x8 heads=4 planes_along_queries=1 planes_along_keys=1 layout=swizzled_blocks queries=last_first,2057.6,248.4,"(376, 1, 8)",128,49152,3.05e-5
+final,6016x8192,listed26,cube-fragment-attention fragments=1x8 heads=4 planes_along_queries=2 planes_along_keys=1 layout=swizzled_blocks queries=last_first,1865.1,274.0,"(188, 1, 8)",256,65536,3.05e-5
+final,6016x8192,listed27,cube-fragment-attention fragments=1x2 heads=2 planes_along_queries=2 planes_along_keys=1 layout=swizzled_blocks queries=last_first,2224.9,229.7,"(188, 2, 8)",128,24576,3.05e-5
+final,6016x8192,listed28,cube-fragment-attention fragments=1x4 heads=2 planes_along_queries=4 planes_along_keys=1 stages_in_flight=2 layout=swizzled_blocks delivery=async queries=last_first,1659.3,308.0,"(94, 2, 8)",256,65536,3.05e-5
+final,6016x8192,listed29,cube-fragment-attention fragments=1x4 heads=4 planes_along_queries=2 planes_along_keys=1 stages_in_flight=2 layout=padded_blocks delivery=async queries=last_first,1579.5,323.5,"(188, 1, 8)",256,86016,3.05e-5
+final,6016x8192,listed30,cube-fragment-attention fragments=1x8 unbiased_steps heads=4 planes_along_queries=2 planes_along_keys=1 stages_in_flight=2 layout=swizzled_blocks delivery=async query=as_keys queries=last_first,1495.2,341.8,"(188, 1, 8)",256,98304,3.05e-5
+final,6016x8192,listed31,cube-fragment-attention fragments=1x8 heads=4 planes_along_queries=2 planes_along_keys=1 prefetch=registers layout=swizzled_blocks queries=last_first,1541.4,331.5,"(188, 1, 8)",256,65536,3.05e-5
+final,6016x8192,listed32,cube-fragment-attention fragments=1x8 unbiased_steps heads=4 planes_along_queries=2 planes_along_keys=1 prefetch=registers layout=padded_blocks queries=last_first,1531.4,333.7,"(188, 1, 8)",256,86016,3.05e-5
+final,6016x8192,listed33,cube-fragment-attention fragments=1x4 unbiased_steps heads=4 planes_along_queries=2 planes_along_keys=1 stages_in_flight=2 prefetch=registers layout=padded_blocks queries=last_first,1802.4,283.5,"(188, 1, 8)",256,86016,3.05e-5
+final,6016x8192,listed34,cube-fragment-attention fragments=2x4 heads=4 planes_along_queries=2 planes_along_keys=1 stages_in_flight=2 layout=swizzled_blocks delivery=async query=as_keys queries=last_first,2512.4,203.4,"(94, 1, 8)",256,98304,3.05e-5
+dev,2048x2048,listed0,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1,1046.1,32.9,"(128, 1, 8)",128,20480,4.88e-4
+dev,2048x2048,listed1,cube-fragment-attention fragments=2x2 heads=4 planes_along_queries=1 planes_along_keys=1,694.4,49.5,"(64, 1, 8)",128,40960,2.44e-4
+dev,2048x2048,listed2,cube-fragment-attention fragments=2x4 heads=4 planes_along_queries=1 planes_along_keys=1,564.9,60.9,"(64, 1, 8)",128,49152,2.44e-4
+dev,2048x2048,listed3,cube-fragment-attention fragments=1x8 heads=1 planes_along_queries=1 planes_along_keys=1,1409.6,24.4,"(128, 4, 8)",32,36864,0.00e0
+dev,2048x2048,listed4,cube-fragment-attention fragments=1x16 heads=1 planes_along_queries=1 planes_along_keys=1,2635.4,13.0,"(128, 4, 8)",32,69632,1.22e-4
+dev,2048x2048,listed5,cube-fragment-attention fragments=1x1 heads=1 planes_along_queries=1 planes_along_keys=1,1145.5,30.0,"(128, 4, 8)",32,8192,4.88e-4
+dev,2048x2048,listed6,cube-fragment-attention fragments=1x1 heads=2 planes_along_queries=1 planes_along_keys=1,1124.6,30.6,"(128, 2, 8)",64,12288,4.88e-4
+dev,2048x2048,listed7,cube-fragment-attention fragments=1x1 heads=8 planes_along_queries=1 planes_along_keys=1,1044.8,32.9,"(128, 1, 8)",128,20480,4.88e-4
+dev,2048x2048,listed8,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=2 planes_along_keys=1,1134.0,30.3,"(64, 1, 8)",256,36864,4.88e-4
+dev,2048x2048,listed9,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=4 planes_along_keys=1,1416.2,24.3,"(32, 1, 8)",512,69632,4.88e-4
+dev,2048x2048,listed10,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 stages_in_flight=2,1015.5,33.9,"(128, 1, 8)",128,24576,4.88e-4
+dev,2048x2048,listed11,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 prefetch=registers,952.3,36.1,"(128, 1, 8)",128,20480,4.88e-4
+dev,2048x2048,listed12,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 stages_in_flight=2 prefetch=registers,942.2,36.5,"(128, 1, 8)",128,24576,4.88e-4
+dev,2048x2048,listed13,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 layout=padded_rows,347.9,98.8,"(128, 1, 8)",128,21760,4.88e-4
+dev,2048x2048,listed14,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 layout=blocks,480.2,71.6,"(128, 1, 8)",128,20480,4.88e-4
+dev,2048x2048,listed15,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 layout=padded_blocks,429.3,80.1,"(128, 1, 8)",128,29696,4.88e-4
+dev,2048x2048,listed16,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 layout=swizzled_blocks,413.8,83.1,"(128, 1, 8)",128,20480,4.88e-4
+dev,2048x2048,listed17,cube-fragment-attention fragments=1x1 scratch=whole heads=4 planes_along_queries=1 planes_along_keys=1,1047.8,32.8,"(128, 1, 8)",128,20480,4.88e-4
+dev,2048x2048,listed18,cube-fragment-attention fragments=1x1 transport=cmma shape=rectangular heads=4 planes_along_queries=1 planes_along_keys=1,1461.8,23.5,"(256, 1, 8)",128,34816,2.44e-4
+dev,2048x2048,listed19,cube-fragment-attention fragments=1x1 transport=cmma heads=1 planes_along_queries=1 planes_along_keys=2,1529.3,22.5,"(128, 4, 8)",64,33920,2.44e-4
+dev,2048x2048,listed20,cube-fragment-attention fragments=1x1 transport=cmma heads=1 planes_along_queries=1 planes_along_keys=4,1490.0,23.1,"(128, 4, 8)",128,55552,2.44e-4
+dev,2048x2048,listed21,cube-fragment-attention fragments=1x1 transport=cmma heads=1 planes_along_queries=1 planes_along_keys=8,1793.4,19.2,"(128, 4, 8)",256,98816,2.44e-4
+dev,2048x2048,listed22,cube-fragment-attention fragments=2x4 heads=4 planes_along_queries=1 planes_along_keys=1 layout=swizzled_blocks,288.5,119.2,"(64, 1, 8)",128,49152,2.44e-4
+dev,2048x2048,listed23,cube-fragment-attention fragments=2x8 heads=4 planes_along_queries=1 planes_along_keys=1 layout=swizzled_blocks,337.2,101.9,"(64, 1, 8)",128,65536,0.00e0
+dev,2048x2048,listed24,cube-fragment-attention fragments=1x8 heads=4 planes_along_queries=1 planes_along_keys=1 layout=swizzled_blocks,293.7,117.0,"(128, 1, 8)",128,49152,0.00e0
+dev,2048x2048,listed25,cube-fragment-attention fragments=1x8 heads=4 planes_along_queries=2 planes_along_keys=1 layout=swizzled_blocks,266.6,128.9,"(64, 1, 8)",256,65536,0.00e0
+dev,2048x2048,listed26,cube-fragment-attention fragments=1x2 heads=2 planes_along_queries=2 planes_along_keys=1 layout=swizzled_blocks,324.4,106.0,"(64, 2, 8)",128,24576,2.44e-4
+dev,2048x2048,listed27,cube-fragment-attention fragments=1x4 heads=2 planes_along_queries=4 planes_along_keys=1 stages_in_flight=2 layout=swizzled_blocks delivery=async,240.6,142.9,"(32, 2, 8)",256,65536,2.44e-4
+dev,2048x2048,listed28,cube-fragment-attention fragments=1x4 heads=4 planes_along_queries=2 planes_along_keys=1 stages_in_flight=2 layout=padded_blocks delivery=async,249.3,137.9,"(64, 1, 8)",256,90112,2.44e-4
+dev,2048x2048,listed29,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 queries=last_first,902.2,38.1,"(128, 1, 8)",128,20480,4.88e-4
+final,2048x2048,listed0,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1,941.4,36.5,"(128, 1, 8)",128,20480,4.88e-4
+final,2048x2048,listed1,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 queries=last_first,995.7,34.5,"(128, 1, 8)",128,20480,4.88e-4
+final,2048x2048,listed2,cube-fragment-attention fragments=2x2 heads=4 planes_along_queries=1 planes_along_keys=1 queries=last_first,563.4,61.0,"(64, 1, 8)",128,40960,2.44e-4
+final,2048x2048,listed3,cube-fragment-attention fragments=2x4 heads=4 planes_along_queries=1 planes_along_keys=1 queries=last_first,424.4,81.0,"(64, 1, 8)",128,49152,2.44e-4
+final,2048x2048,listed4,cube-fragment-attention fragments=1x8 heads=1 planes_along_queries=1 planes_along_keys=1 queries=last_first,1165.0,29.5,"(128, 4, 8)",32,36864,2.44e-4
+final,2048x2048,listed5,cube-fragment-attention fragments=1x16 heads=1 planes_along_queries=1 planes_along_keys=1 queries=last_first,2250.2,15.3,"(128, 4, 8)",32,69632,2.44e-4
+final,2048x2048,listed6,cube-fragment-attention fragments=1x1 heads=1 planes_along_queries=1 planes_along_keys=1 queries=last_first,1070.4,32.1,"(128, 4, 8)",32,8192,4.88e-4
+final,2048x2048,listed7,cube-fragment-attention fragments=1x1 heads=2 planes_along_queries=1 planes_along_keys=1 queries=last_first,1110.2,31.0,"(128, 2, 8)",64,12288,4.88e-4
+final,2048x2048,listed8,cube-fragment-attention fragments=1x1 heads=8 planes_along_queries=1 planes_along_keys=1 queries=last_first,995.5,34.5,"(128, 1, 8)",128,20480,4.88e-4
+final,2048x2048,listed9,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=2 planes_along_keys=1 queries=last_first,1006.7,34.1,"(64, 1, 8)",256,36864,4.88e-4
+final,2048x2048,listed10,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=4 planes_along_keys=1 queries=last_first,1251.9,27.5,"(32, 1, 8)",512,69632,4.88e-4
+final,2048x2048,listed11,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 stages_in_flight=2 queries=last_first,964.2,35.7,"(128, 1, 8)",128,24576,4.88e-4
+final,2048x2048,listed12,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 prefetch=registers queries=last_first,983.5,35.0,"(128, 1, 8)",128,20480,4.88e-4
+final,2048x2048,listed13,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 stages_in_flight=2 prefetch=registers queries=last_first,904.1,38.0,"(128, 1, 8)",128,24576,4.88e-4
+final,2048x2048,listed14,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 layout=padded_rows queries=last_first,328.2,104.7,"(128, 1, 8)",128,21760,4.88e-4
+final,2048x2048,listed15,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 layout=blocks queries=last_first,665.5,51.7,"(128, 1, 8)",128,20480,4.88e-4
+final,2048x2048,listed16,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 layout=padded_blocks queries=last_first,329.7,104.3,"(128, 1, 8)",128,29184,4.88e-4
+final,2048x2048,listed17,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 layout=swizzled_blocks queries=last_first,334.2,102.9,"(128, 1, 8)",128,20480,4.88e-4
+final,2048x2048,listed18,cube-fragment-attention fragments=1x1 scratch=whole heads=4 planes_along_queries=1 planes_along_keys=1 queries=last_first,999.3,34.4,"(128, 1, 8)",128,20480,4.88e-4
+final,2048x2048,listed19,cube-fragment-attention fragments=1x1 transport=cmma shape=rectangular heads=4 planes_along_queries=1 planes_along_keys=1 queries=last_first,1364.6,25.2,"(256, 1, 8)",128,34816,2.44e-4
+final,2048x2048,listed20,cube-fragment-attention fragments=1x1 transport=cmma heads=1 planes_along_queries=1 planes_along_keys=2 queries=last_first,1434.1,24.0,"(128, 4, 8)",64,33920,2.44e-4
+final,2048x2048,listed21,cube-fragment-attention fragments=1x1 transport=cmma heads=1 planes_along_queries=1 planes_along_keys=4 queries=last_first,1435.2,24.0,"(128, 4, 8)",128,55552,2.44e-4
+final,2048x2048,listed22,cube-fragment-attention fragments=1x1 transport=cmma heads=1 planes_along_queries=1 planes_along_keys=8 queries=last_first,1686.5,20.4,"(128, 4, 8)",256,98816,2.44e-4
+final,2048x2048,listed23,cube-fragment-attention fragments=2x4 heads=4 planes_along_queries=1 planes_along_keys=1 layout=swizzled_blocks queries=last_first,222.5,154.5,"(64, 1, 8)",128,49152,2.44e-4
+final,2048x2048,listed24,cube-fragment-attention fragments=2x8 heads=4 planes_along_queries=1 planes_along_keys=1 layout=swizzled_blocks queries=last_first,253.3,135.7,"(64, 1, 8)",128,65536,2.44e-4
+final,2048x2048,listed25,cube-fragment-attention fragments=1x8 heads=4 planes_along_queries=1 planes_along_keys=1 layout=swizzled_blocks queries=last_first,224.4,153.2,"(128, 1, 8)",128,49152,2.44e-4
+final,2048x2048,listed26,cube-fragment-attention fragments=1x8 heads=4 planes_along_queries=2 planes_along_keys=1 layout=swizzled_blocks queries=last_first,221.8,155.0,"(64, 1, 8)",256,65536,2.44e-4
+final,2048x2048,listed27,cube-fragment-attention fragments=1x2 heads=2 planes_along_queries=2 planes_along_keys=1 layout=swizzled_blocks queries=last_first,248.0,138.6,"(64, 2, 8)",128,24576,2.44e-4
+final,2048x2048,listed28,cube-fragment-attention fragments=1x4 heads=2 planes_along_queries=4 planes_along_keys=1 stages_in_flight=2 layout=swizzled_blocks delivery=async queries=last_first,198.8,172.9,"(32, 2, 8)",256,65536,2.44e-4
+final,2048x2048,listed29,cube-fragment-attention fragments=1x4 heads=4 planes_along_queries=2 planes_along_keys=1 stages_in_flight=2 layout=padded_blocks delivery=async queries=last_first,197.3,174.3,"(64, 1, 8)",256,86016,2.44e-4
+final,2048x2048,listed30,cube-fragment-attention fragments=1x8 unbiased_steps heads=4 planes_along_queries=2 planes_along_keys=1 stages_in_flight=2 layout=swizzled_blocks delivery=async query=as_keys queries=last_first,189.1,181.8,"(64, 1, 8)",256,98304,2.44e-4
+final,2048x2048,listed31,cube-fragment-attention fragments=1x8 heads=4 planes_along_queries=2 planes_along_keys=1 prefetch=registers layout=swizzled_blocks queries=last_first,195.2,176.1,"(64, 1, 8)",256,65536,2.44e-4
+final,2048x2048,listed32,cube-fragment-attention fragments=1x8 unbiased_steps heads=4 planes_along_queries=2 planes_along_keys=1 prefetch=registers layout=padded_blocks queries=last_first,194.2,177.0,"(64, 1, 8)",256,86016,2.44e-4
+final,2048x2048,listed33,cube-fragment-attention fragments=1x4 unbiased_steps heads=4 planes_along_queries=2 planes_along_keys=1 stages_in_flight=2 prefetch=registers layout=padded_blocks queries=last_first,191.5,179.5,"(64, 1, 8)",256,86016,2.44e-4
+final,2048x2048,listed34,cube-fragment-attention fragments=2x4 heads=4 planes_along_queries=2 planes_along_keys=1 stages_in_flight=2 layout=swizzled_blocks delivery=async query=as_keys queries=last_first,222.6,154.4,"(32, 1, 8)",256,98304,2.44e-4
+dev,4096x4096,listed0,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1,3449.5,39.9,"(256, 1, 8)",128,20480,4.88e-4
+dev,4096x4096,listed1,cube-fragment-attention fragments=2x2 heads=4 planes_along_queries=1 planes_along_keys=1,2058.5,66.8,"(128, 1, 8)",128,40960,2.44e-4
+dev,4096x4096,listed2,cube-fragment-attention fragments=2x4 heads=4 planes_along_queries=1 planes_along_keys=1,1565.0,87.8,"(128, 1, 8)",128,49152,2.44e-4
+dev,4096x4096,listed3,cube-fragment-attention fragments=1x8 heads=1 planes_along_queries=1 planes_along_keys=1,5116.5,26.9,"(256, 4, 8)",32,36864,0.00e0
+dev,4096x4096,listed4,cube-fragment-attention fragments=1x16 heads=1 planes_along_queries=1 planes_along_keys=1,9728.0,14.1,"(256, 4, 8)",32,69632,1.22e-4
+dev,4096x4096,listed5,cube-fragment-attention fragments=1x1 heads=1 planes_along_queries=1 planes_along_keys=1,3753.6,36.6,"(256, 4, 8)",32,8192,4.88e-4
+dev,4096x4096,listed6,cube-fragment-attention fragments=1x1 heads=2 planes_along_queries=1 planes_along_keys=1,3445.0,39.9,"(256, 2, 8)",64,12288,4.88e-4
+dev,4096x4096,listed7,cube-fragment-attention fragments=1x1 heads=8 planes_along_queries=1 planes_along_keys=1,3437.2,40.0,"(256, 1, 8)",128,20480,4.88e-4
+dev,4096x4096,listed8,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=2 planes_along_keys=1,3615.5,38.0,"(128, 1, 8)",256,36864,4.88e-4
+dev,4096x4096,listed9,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=4 planes_along_keys=1,4237.9,32.4,"(64, 1, 8)",512,69632,4.88e-4
+dev,4096x4096,listed10,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 stages_in_flight=2,3351.2,41.0,"(256, 1, 8)",128,24576,4.88e-4
+dev,4096x4096,listed11,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 prefetch=registers,3250.6,42.3,"(256, 1, 8)",128,20480,4.88e-4
+dev,4096x4096,listed12,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 stages_in_flight=2 prefetch=registers,3304.3,41.6,"(256, 1, 8)",128,24576,4.88e-4
+dev,4096x4096,listed13,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 layout=padded_rows,1018.6,135.0,"(256, 1, 8)",128,21760,4.88e-4
+dev,4096x4096,listed14,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 layout=blocks,1589.8,86.5,"(256, 1, 8)",128,20480,4.88e-4
+dev,4096x4096,listed15,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 layout=padded_blocks,1358.3,101.2,"(256, 1, 8)",128,29696,4.88e-4
+dev,4096x4096,listed16,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 layout=swizzled_blocks,1327.3,103.6,"(256, 1, 8)",128,20480,4.88e-4
+dev,4096x4096,listed17,cube-fragment-attention fragments=1x1 scratch=whole heads=4 planes_along_queries=1 planes_along_keys=1,3461.0,39.7,"(256, 1, 8)",128,20480,4.88e-4
+dev,4096x4096,listed18,cube-fragment-attention fragments=1x1 transport=cmma shape=rectangular heads=4 planes_along_queries=1 planes_along_keys=1,5201.0,26.4,"(512, 1, 8)",128,34816,2.44e-4
+dev,4096x4096,listed19,cube-fragment-attention fragments=1x1 transport=cmma heads=1 planes_along_queries=1 planes_along_keys=2,5340.8,25.7,"(256, 4, 8)",64,33920,2.44e-4
+dev,4096x4096,listed20,cube-fragment-attention fragments=1x1 transport=cmma heads=1 planes_along_queries=1 planes_along_keys=4,5193.6,26.5,"(256, 4, 8)",128,55552,2.44e-4
+dev,4096x4096,listed21,cube-fragment-attention fragments=1x1 transport=cmma heads=1 planes_along_queries=1 planes_along_keys=8,6106.0,22.5,"(256, 4, 8)",256,98816,2.44e-4
+dev,4096x4096,listed22,cube-fragment-attention fragments=2x4 heads=4 planes_along_queries=1 planes_along_keys=1 layout=swizzled_blocks,831.7,165.3,"(128, 1, 8)",128,49152,2.44e-4
+dev,4096x4096,listed23,cube-fragment-attention fragments=2x8 heads=4 planes_along_queries=1 planes_along_keys=1 layout=swizzled_blocks,1003.5,137.0,"(128, 1, 8)",128,65536,0.00e0
+dev,4096x4096,listed24,cube-fragment-attention fragments=1x8 heads=4 planes_along_queries=1 planes_along_keys=1 layout=swizzled_blocks,892.9,154.0,"(256, 1, 8)",128,49152,0.00e0
+dev,4096x4096,listed25,cube-fragment-attention fragments=1x8 heads=4 planes_along_queries=2 planes_along_keys=1 layout=swizzled_blocks,785.8,175.0,"(128, 1, 8)",256,65536,0.00e0
+dev,4096x4096,listed26,cube-fragment-attention fragments=1x2 heads=2 planes_along_queries=2 planes_along_keys=1 layout=swizzled_blocks,951.1,144.5,"(128, 2, 8)",128,24576,2.44e-4
+dev,4096x4096,listed27,cube-fragment-attention fragments=1x4 heads=2 planes_along_queries=4 planes_along_keys=1 stages_in_flight=2 layout=swizzled_blocks delivery=async,701.1,196.1,"(64, 2, 8)",256,65536,2.44e-4
+dev,4096x4096,listed28,cube-fragment-attention fragments=1x4 heads=4 planes_along_queries=2 planes_along_keys=1 stages_in_flight=2 layout=padded_blocks delivery=async,709.4,193.8,"(128, 1, 8)",256,90112,2.44e-4
+dev,4096x4096,listed29,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 queries=last_first,3211.4,42.8,"(256, 1, 8)",128,20480,4.88e-4
+final,4096x4096,listed0,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1,3331.6,41.3,"(256, 1, 8)",128,20480,4.88e-4
+final,4096x4096,listed1,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=1 planes_along_keys=1 queries=last_first,3203.2,42.9,"(256, 1, 8)",128,20480,4.88e-4
+final,4096x4096,listed2,cube-fragment-attention fragments=2x2 heads=4 planes_along_queries=1 planes_along_keys=1 queries=last_first,1932.2,71.1,"(128, 1, 8)",128,40960,2.44e-4
+final,4096x4096,listed3,cube-fragment-attention fragments=2x4 heads=4 planes_along_queries=1 planes_along_keys=1 queries=last_first,1370.7,100.3,"(128, 1, 8)",128,49152,2.44e-4
+final,4096x4096,listed4,cube-fragment-attention fragments=1x8 heads=1 planes_along_queries=1 planes_along_keys=1 queries=last_first,4200.4,32.7,"(256, 4, 8)",32,36864,2.44e-4
+final,4096x4096,listed5,cube-fragment-attention fragments=1x16 heads=1 planes_along_queries=1 planes_along_keys=1 queries=last_first,8126.9,16.9,"(256, 4, 8)",32,69632,2.44e-4
+final,4096x4096,listed6,cube-fragment-attention fragments=1x1 heads=1 planes_along_queries=1 planes_along_keys=1 queries=last_first,3613.8,38.0,"(256, 4, 8)",32,8192,4.88e-4
+final,4096x4096,listed7,cube-fragment-attention fragments=1x1 heads=2 planes_along_queries=1 planes_along_keys=1 queries=last_first,3362.2,40.9,"(256, 2, 8)",64,12288,4.88e-4
+final,4096x4096,listed8,cube-fragment-attention fragments=1x1 heads=8 planes_along_queries=1 planes_along_keys=1 queries=last_first,3207.5,42.9,"(256, 1, 8)",128,20480,4.88e-4
+final,4096x4096,listed9,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=2 planes_along_keys=1 queries=last_first,3445.2,39.9,"(128, 1, 8)",256,36864,4.88e-4
+final,4096x4096,listed10,cube-fragment-attention fragments=1x1 heads=4 planes_along_queries=4 planes_along_keys=1 queries=last_first,3832.8,35.9,"(64, 1, 8)",512,69632,4.88e-4
