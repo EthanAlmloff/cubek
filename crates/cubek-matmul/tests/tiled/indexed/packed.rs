@@ -291,6 +291,11 @@ fn a_grouped_product_on_the_cube_staged_reads_each_group_s_packed_nvfp4_slab() {
 }
 
 #[test]
+fn a_tuned_routed_product_reads_each_route_s_packed_mxfp4_slab() {
+    a_tuned_routed_packed_stack_reads_each_route_s_slab(PackedFormat::Mxfp4);
+}
+
+#[test]
 fn a_grouped_product_on_the_plane_shuffle_reads_each_group_s_packed_mxfp4_slab() {
     a_grouped_packed_stack_reads_each_group_s_slab(
         PackedFormat::Mxfp4,
