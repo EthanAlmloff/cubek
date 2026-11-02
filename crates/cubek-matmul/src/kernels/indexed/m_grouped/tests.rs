@@ -1,14 +1,5 @@
 //! The M-grouped launch against a host reference.
 
-use cubecl::client::Client;
-use cubecl::ir::{ElemType, FloatKind};
-use cubecl::prelude::*;
-use cubecl::std::tensor::TensorHandle;
-use cubecl::tile::Axis;
-use cubecl::tile::launch::Refusal;
-use cubek_std::autotune::GroupPriority;
-use cubek_test_utils::client;
-
 use super::{
     MGroupedFloors, MGroupedListing, MGroupedMatmulTensors, MGroupedSettings, launch_tuned,
 };
@@ -18,6 +9,14 @@ use crate::kernels::indexed::stack::SlabAxis;
 use crate::kernels::tensor::{PlainTensor, StoredTensor};
 use crate::kernels::tune::Product;
 use crate::tiled::storage::{StorageLevels, tile};
+use cubecl::client::Client;
+use cubecl::ir::{ElemType, FloatKind};
+use cubecl::prelude::*;
+use cubecl::std::tensor::TensorHandle;
+use cubecl::tile::Axis;
+use cubecl::tile::launch::Refusal;
+use cubek_std::autotune::GroupPriority;
+use cubek_test_utils::client;
 
 const F32: ElemType = ElemType::Float(FloatKind::F32);
 

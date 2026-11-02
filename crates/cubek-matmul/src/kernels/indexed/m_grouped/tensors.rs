@@ -1,15 +1,5 @@
-use cubecl::client::Client;
-use cubecl::tile::launch::Refusal;
-use cubecl::zspace::Shape;
-use cubecl::zspace::metadata::Metadata;
-use cubek_microkernel::matmul::{MatmulLayout, MatmulMicrokernel, MatmulOperand, MatmulOperands};
-use cubek_std::Hardware;
-use cubek_std::layout::contiguous;
-use cubek_std::matmul_axes::{K, N};
-
-use crate::kernels::indexed::m_grouped::PaddedRows;
 use crate::kernels::indexed::m_grouped::{
-    MGroupedChunk, MGroupedMatmulKey, MGroupedRowSource, MGroupedSettings,
+    MGroupedChunk, MGroupedMatmulKey, MGroupedRowSource, MGroupedSettings, PaddedRows,
 };
 use crate::kernels::indexed::stack::{SlabAxis, SlabView};
 use crate::kernels::select::problem::OperandKind;
@@ -19,6 +9,14 @@ use crate::kernels::{
     MATMUL_SLABS_TAKE_NO_STORED_TILES, MatmulIndex, MatmulIndexTable, MatmulInputs, MatmulRoutine,
     MatmulRoutineProblem,
 };
+use cubecl::client::Client;
+use cubecl::tile::launch::Refusal;
+use cubecl::zspace::Shape;
+use cubecl::zspace::metadata::Metadata;
+use cubek_microkernel::matmul::{MatmulLayout, MatmulMicrokernel, MatmulOperand, MatmulOperands};
+use cubek_std::Hardware;
+use cubek_std::layout::contiguous;
+use cubek_std::matmul_axes::{K, N};
 
 /// The operands of one grouped product, `out[r] = lhs[r] · rhs[group(r)]`: where the rows come
 /// from, sorted by group, the stack of slabs laid `along`, float or packed, and each group's

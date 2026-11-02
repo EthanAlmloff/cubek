@@ -4,23 +4,12 @@
 //! ([`MGroupedMatmulTensors`]). A packed stack is read packed. Any rows grouped by the slab they
 //! read are one such product, not only an expert layer's.
 //!
-//! Its gradient for the stack is the K-grouped product, [`k_grouped`](crate::kernels::indexed::k_grouped).
+//! Its gradient for the stack is the K-grouped product,
+//! [`k_grouped`](crate::kernels::indexed::k_grouped).
 
-use cubecl::ir::ElemType;
-use cubecl::std::tensor::TensorHandle;
-use cubecl::tile::launch::Refusal;
-use cubecl::tune::{LocalTuner, Tunable, local_tuner};
-use cubecl::{self as cubecl, AutotuneKey, CubeTuneId};
-use cubecl_common::device::Device;
-use cubek_microkernel::matmul::MatmulMicrokernel;
-use cubek_std::Hardware;
-use cubek_std::autotune::{Autotune, GroupPriority};
-use serde::{Deserialize, Serialize};
-
-use crate::kernels::indexed::m_grouped::{GroupedRows, PaddedRows, RouteSort, upload};
 use crate::kernels::indexed::m_grouped::{
-    MGroupedFloors, MGroupedListing, MGroupedMatmulTensors, MGroupedRowSource,
-    MGroupedRowSourceKind, MGroupedSettings,
+    GroupedRows, MGroupedFloors, MGroupedListing, MGroupedMatmulTensors, MGroupedRowSource,
+    MGroupedRowSourceKind, MGroupedSettings, PaddedRows, RouteSort, upload,
 };
 use crate::kernels::indexed::stack::SlabAxis;
 use crate::kernels::select::problem::OperandKind;
@@ -31,6 +20,16 @@ use crate::kernels::{
     CubeStagedMatmulRoutine, CubeStagedMatmulRoutineSettings, MatmulRoutine,
     PlaneShuffleMatmulRoutine, PlaneShuffleMatmulRoutineSettings,
 };
+use cubecl::ir::ElemType;
+use cubecl::std::tensor::TensorHandle;
+use cubecl::tile::launch::Refusal;
+use cubecl::tune::{LocalTuner, Tunable, local_tuner};
+use cubecl::{self as cubecl, AutotuneKey, CubeTuneId};
+use cubecl_common::device::Device;
+use cubek_microkernel::matmul::MatmulMicrokernel;
+use cubek_std::Hardware;
+use cubek_std::autotune::{Autotune, GroupPriority};
+use serde::{Deserialize, Serialize};
 
 /// What makes two grouped products want the same launch: the stack's shape and layout, as
 /// the routed key states them, and the rows, whose count over the groups' is the mean group's
@@ -234,8 +233,9 @@ mod tests {
     use cubecl::std::tensor::TensorHandle;
 
     use super::evenly_spread;
-    use crate::kernels::indexed::m_grouped::{GroupedRows, PaddedRows, RouteSort, upload};
-    use crate::kernels::indexed::m_grouped::{MGroupedMatmulTensors, MGroupedRowSource};
+    use crate::kernels::indexed::m_grouped::{
+        GroupedRows, MGroupedMatmulTensors, MGroupedRowSource, PaddedRows, RouteSort, upload,
+    };
     use crate::kernels::indexed::stack::SlabAxis;
     use crate::kernels::tensor::{PlainTensor, StoredTensor};
 
