@@ -141,13 +141,14 @@ fn a_tuned_routed_packed_stack_reads_each_route_s_slab(format: PackedFormat) {
         SlabAxis::Output,
     )
     .expect("a packed stack of whole slabs derives a routed launch");
+    let hw = Hardware::from_client(&client);
+    let no_matrix_instruction = hw.properties.features.matmul.cmma.iter().next().is_none();
     let out = match launch_tuned(&cubecl::test_device(), tensors, GroupPriority::DEFAULT) {
         Ok(out) => out,
-        Err(Refusal::CubePastDevice { .. }) => {
-            TestOutcome::Validated(ValidationResult::Skipped(
-                "no floor serves a packed stack on a runtime holding too few units a cube"
-                    .to_string(),
-            ))
+        Err(why) if matches!(why, Refusal::CubePastDevice { .. }) || no_matrix_instruction => {
+            TestOutcome::Validated(ValidationResult::Skipped(format!(
+                "no floor serves a packed stack on this runtime: {why:?}"
+            )))
             .enforce();
             return;
         }
