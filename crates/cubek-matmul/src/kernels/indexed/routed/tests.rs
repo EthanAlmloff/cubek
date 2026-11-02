@@ -134,7 +134,7 @@ fn a_packed_stack_is_asked_every_plane_shuffle_floor_and_the_packed_cube_staged_
 /// Routes far out of range, as a discarded launch leaves them, are replaced by routes naming every
 /// expert in turn, for the candidates to be measured on.
 #[test]
-fn spread_routes_replace_a_discarded_launchs_garbage() {
+fn spread_routes_replace_garbage_from_a_discarded_launch() {
     let client = client();
     let (rows, slots, experts) = (5, 3, 4);
     let tensors = routed_by(&client, rows, slots, &vec![0xF000_0000; rows * slots]);
